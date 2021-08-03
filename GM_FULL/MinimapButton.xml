@@ -1,0 +1,65 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+<!-- MINIMAP BUTTON (start) -->
+<Button name="GMHelper_MinimapButton" text="" toplevel="true" frameStrata="LOW" parent="Minimap" enableMouse="true" movable="true" hidden="false" clampedToScreen="true">
+	<Size>
+		<AbsDimension x="27" y="27"/>
+	</Size>
+	<Anchors>
+		<Anchor point="TOPLEFT" relativeTo="Minimap">
+			<Offset>
+				<AbsDimension x="-25" y="-60"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+    <NormalTexture  file="Interface\AddOns\GM_FULL\wow_store"/>
+    <PushedTexture file = "Interface\AddOns\GM_FULL\wow_store"/>
+	<Layers>
+		<Layer level="OVERLAY">
+			<Texture name="Texture1" file="Interface\Minimap\MiniMap-TrackingBorder">
+				<Size>
+					<AbsDimension x="46" y="46" />
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT" />
+				</Anchors>
+			</Texture>
+		</Layer>
+	</Layers>
+	<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+        <ButtonText name="$parentText">
+            <FontHeight>
+                <AbsValue val="10" />
+            </FontHeight>
+        </ButtonText>
+        <NormalFont style="GameFontNormal" />
+        <HighlightFont style="GameFontHighlight" />
+        <DisabledFont style="GameFontDisable" />
+	<Scripts>
+		<OnLoad>
+			self:RegisterForClicks("LeftButtonUp","RightButtonUp","MiddleButtonUp");
+			self:RegisterForDrag("RightButton");
+		</OnLoad>
+		<OnEnter>
+		ShowGMHMinimap(self);
+		</OnEnter>
+		<OnLeave>
+			GameTooltip:Hide();
+		</OnLeave>
+		<OnClick>
+			ToggleAddon()
+		</OnClick>
+<OnLoad>
+self:RegisterForDrag("RightButton");
+</OnLoad>
+		<OnDragStart>
+				self:StartMoving();
+				GameTooltip:Hide();
+		</OnDragStart>
+		<OnDragStop>
+				self:StopMovingOrSizing();
+				ShowGMHMinimap(self);
+		</OnDragStop>
+	</Scripts>
+</Button>
+</Ui>

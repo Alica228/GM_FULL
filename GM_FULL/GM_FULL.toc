@@ -1,0 +1,34 @@
+## Interface: 30100
+## Title: |cFF00FF00Addon for GameMasters|r
+## Author: Alica228
+## Version: 1.0
+## DefaultState: Enabled
+## LoadOnDemand: 0
+GM_FULL.lua
+MinimapButton.xml
+FullForm.xml
+GMFirst.xml
+GMSecond.xml
+GMThird.xml
+TicketForm.xml
+TeleForm.xml
+NotesFu.xml
+MiscFormFirst.xml
+MiscFormSecond.xml
+MiscFormThird.xml
+QuickPortalForm.xml
+QuestForm.xml
+MorphForm.xml
+NPCForm.xml
+ModifyForm.xml
+RebootForm.xml
+AddForm.xml
+EventForm.xml
+BanForm.xml
+KalimdorForm.xml
+EasternForm.xml
+OutlandForm.xml
+NorthrendForm.xml
+AnnounceForm.xml
+ObjectForm.xml
+SearchForm.xml
