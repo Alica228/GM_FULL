@@ -262,7 +262,6 @@
 		</OnDragStop>
 		<OnEvent>
 			SendChatMessage(".acc", "GUILD", nil, nil);
-			SendChatMessage(".world clear", "GUILD", nil, nil);
 		</OnEvent>
     </Scripts>
   </Frame>
