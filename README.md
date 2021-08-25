@@ -1,2 +1,2 @@
 # GM_FULL
-Addon_for_game_masters
+Папку GM_FULL (не GM_FULL-main !!!) закинуть в папку /Interface/Addons/
