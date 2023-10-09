@@ -63,7 +63,7 @@
       </Layer>
     </Layers>
     <Frames>
-		<Button name="$parentComponent1" text="|cFF00FF00GM On|r">
+		<Button name="GMBtnThirdlvl" text="|cFF00FF00GM On|r">
         <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
         <Size>
           <AbsDimension x="60" y="17" />
@@ -76,8 +76,24 @@
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".gm on", "GUILD");
+          <OnLoad>
+if gmEnabled then
+GMBtnThirdlvl:SetText("|cFF00FF00GM Off|r");
+else
+GMBtnThirdlvl:SetText("|cFF00FF00GM On|r");
+end;
+          </OnLoad>
+          <OnClick>
+if gmEnabled then
+SendChatMessage(".gm off", "GUILD");
+SendChatMessage(".gm chat off", "GUILD");
+GMBtnThirdlvl:SetText("|cFF00FF00GM On|r");
+else
+SendChatMessage(".gm on", "GUILD");
 SendChatMessage(".gm chat on", "GUILD");
+GMBtnThirdlvl:SetText("|cFF00FF00GM Off|r");
+end;
+gmEnabled = not gmEnabled;
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -101,7 +117,7 @@ SendChatMessage(".gm chat on", "GUILD");
         <HighlightFont style="GameFontHighlight" />
         <DisabledFont style="GameFontDisable" />
       </Button>
-		<Button name="$parentComponent2" text="|cFF00FF00GM Off|r">
+		<Button name="GMVisBtnThirdlvl" text="|cFF00FF00Vis On|r">
         <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
         <Size>
           <AbsDimension x="60" y="17" />
@@ -114,8 +130,26 @@ SendChatMessage(".gm chat on", "GUILD");
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".gm off", "GUILD");
-SendChatMessage(".gm chat off", "GUILD");
+          <OnLoad>
+if UnitAura("player", "Прозрачность (50%)", nil, "PLAYER|HARMFUL") then
+	gmVisEnabled = true;
+	GMVisBtnThirdlvl:SetText("|cFF00FF00Vis Off|r");
+else
+	gmVisEnabled = false;
+	GMVisBtnThirdlvl:SetText("|cFF00FF00Vis On|r");
+end
+          </OnLoad>
+          <OnClick>
+if gmVisEnabled then
+SendChatMessage(".gm vis on", "GUILD");
+GMVisBtnThirdlvl:SetText("|cFF00FF00Vis On|r");
+else
+SendChatMessage(".gm vis off", "GUILD");
+GMVisBtnThirdlvl:SetText("|cFF00FF00Vis Off|r");
+gmEnabled = true;
+GMBtnThirdlvl:SetText("|cFF00FF00GM Off|r");
+end;
+gmVisEnabled = not gmVisEnabled;
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -139,7 +173,7 @@ SendChatMessage(".gm chat off", "GUILD");
         <HighlightFont style="GameFontHighlight" />
         <DisabledFont style="GameFontDisable" />
       </Button>
-		<Button name="$parentComponent3" text="|cFF00FF00Fly On|r">
+		<Button name="GMFlyBtnThirdlvl" text="|cFF00FF00Fly On|r">
         <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
         <Size>
           <AbsDimension x="60" y="17" />
@@ -152,7 +186,24 @@ SendChatMessage(".gm chat off", "GUILD");
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".gm fly on", "GUILD");
+          <OnLoad>
+if UnitAura("player", "Полет", nil, "PLAYER|HELPFUL") then
+	gmFlyEnabled = true;
+	GMFlyBtnThirdlvl:SetText("|cFF00FF00Fly Off|r");
+else
+	gmVisEnabled = false;
+	GMFlyBtnThirdlvl:SetText("|cFF00FF00Fly On|r");
+end
+          </OnLoad>
+          <OnClick>
+if gmFlyEnabled then
+SendChatMessage(".gm fly off", "GUILD");
+GMFlyBtnThirdlvl:SetText("|cFF00FF00Fly On|r");
+else
+SendChatMessage(".gm fly on", "GUILD");
+GMFlyBtnThirdlvl:SetText("|cFF00FF00Fly Off|r");
+end;
+gmFlyEnabled = not gmFlyEnabled;
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -176,7 +227,7 @@ SendChatMessage(".gm chat off", "GUILD");
         <HighlightFont style="GameFontHighlight" />
         <DisabledFont style="GameFontDisable" />
       </Button>
-		<Button name="$parentComponent4" text="|cFF00FF00Fly Off|r">
+		<Button name="$parentComponent4" text="|cFF00FF00Del Q|r">
         <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
         <Size>
           <AbsDimension x="60" y="17" />
@@ -189,7 +240,7 @@ SendChatMessage(".gm chat off", "GUILD");
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".gm fly off", "GUILD");
+          <OnClick>for i=1,GetNumQuestLogEntries() do SelectQuestLogEntry(i); SetAbandonQuest(); AbandonQuest() end;
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -213,7 +264,7 @@ SendChatMessage(".gm chat off", "GUILD");
         <HighlightFont style="GameFontHighlight" />
         <DisabledFont style="GameFontDisable" />
       </Button>
-		<Button name="$parentComponent13" text="|cFF00FF00Relo loot|r">
+		<Button name="$parentComponent13" text="|cFF00FF00Relo|r">
         <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
         <Size>
           <AbsDimension x="60" y="17" />
@@ -226,7 +277,7 @@ SendChatMessage(".gm chat off", "GUILD");
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".reload all loot", "GUILD");
+          <OnClick>SendChatMessage(".reload cond", "GUILD"); SendChatMessage(".reload smart", "GUILD");  SendChatMessage(".reload spell_link", "GUILD"); SendChatMessage(".relo player", "GUILD");  SendChatMessage(".reload all loot", "GUILD"); 
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -263,7 +314,7 @@ SendChatMessage(".gm chat off", "GUILD");
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".mod hp 2000000000", "GUILD");
+          <OnClick>SendChatMessage(".cheat god", "GUILD");SendChatMessage(".mod hp 1000000000", "GUILD");
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -287,75 +338,89 @@ SendChatMessage(".gm chat off", "GUILD");
         <HighlightFont style="GameFontHighlight" />
         <DisabledFont style="GameFontDisable" />
       </Button>
-		<Button name="$parentComponent6" text="|cFF00FF00Speed On|r">
+		<Button name="$parentComponent6" text="|cFF00FF001|r">
         <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
-        <Size>
-          <AbsDimension x="60" y="17" />
-        </Size>
+        <Size><AbsDimension x="25" y="17" /></Size>
         <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-              <AbsDimension x="144" y="-49" />
-            </Offset>
-          </Anchor>
+			<Anchor point="TOPLEFT">
+				<Offset><AbsDimension x="144" y="-49" /></Offset>
+			</Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".mod speed 30", "GUILD");
-</OnClick>
+			<OnClick>SendChatMessage(".mod speed 1", "GUILD");</OnClick>
         </Scripts>
-        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
-          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
-        </NormalTexture>
-        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
-          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
-        </PushedTexture>
-        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
-          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
-        </DisabledTexture>
-        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
-          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
-        </HighlightTexture>
+        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></NormalTexture>
+        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></PushedTexture>
+        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></DisabledTexture>
+        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></HighlightTexture>
         <ButtonText name="$parentText">
-          <FontHeight>
-            <AbsValue val="10" />
-          </FontHeight>
+			<FontHeight><AbsValue val="10" /></FontHeight>
         </ButtonText>
         <NormalFont style="GameFontNormal" />
         <HighlightFont style="GameFontHighlight" />
         <DisabledFont style="GameFontDisable" />
       </Button>
-		<Button name="$parentComponent14" text="|cFF00FF00Speed Off|r">
+		<Button name="$parentComponent116" text="|cFF00FF005|r">
         <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
-        <Size>
-          <AbsDimension x="60" y="17" />
-        </Size>
+        <Size><AbsDimension x="25" y="17" /></Size>
         <Anchors>
-          <Anchor point="TOPLEFT">
-            <Offset>
-              <AbsDimension x="210" y="-49" />
-            </Offset>
-          </Anchor>
+			<Anchor point="TOPLEFT">
+				<Offset><AbsDimension x="177" y="-49" /></Offset>
+			</Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".mod speed 1", "GUILD");
-</OnClick>
+			<OnClick>SendChatMessage(".mod speed 5", "GUILD");</OnClick>
         </Scripts>
-        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
-          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
-        </NormalTexture>
-        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
-          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
-        </PushedTexture>
-        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
-          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
-        </DisabledTexture>
-        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
-          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
-        </HighlightTexture>
+        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></NormalTexture>
+        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></PushedTexture>
+        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></DisabledTexture>
+        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></HighlightTexture>
         <ButtonText name="$parentText">
-          <FontHeight>
-            <AbsValue val="10" />
-          </FontHeight>
+			<FontHeight><AbsValue val="10" /></FontHeight>
+        </ButtonText>
+        <NormalFont style="GameFontNormal" />
+        <HighlightFont style="GameFontHighlight" />
+        <DisabledFont style="GameFontDisable" />
+      </Button>
+		<Button name="$parentComponent116" text="|cFF00FF0025|r">
+        <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
+        <Size><AbsDimension x="25" y="17" /></Size>
+        <Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset><AbsDimension x="210" y="-49" /></Offset>
+			</Anchor>
+        </Anchors>
+        <Scripts>
+			<OnClick>SendChatMessage(".mod speed 25", "GUILD");</OnClick>
+        </Scripts>
+        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></NormalTexture>
+        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></PushedTexture>
+        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></DisabledTexture>
+        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></HighlightTexture>
+        <ButtonText name="$parentText">
+			<FontHeight><AbsValue val="10" /></FontHeight>
+        </ButtonText>
+        <NormalFont style="GameFontNormal" />
+        <HighlightFont style="GameFontHighlight" />
+        <DisabledFont style="GameFontDisable" />
+      </Button>
+		<Button name="$parentComponent116" text="|cFF00FF0050|r">
+        <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
+        <Size><AbsDimension x="25" y="17" /></Size>
+        <Anchors>
+			<Anchor point="TOPLEFT">
+				<Offset><AbsDimension x="243" y="-49" /></Offset>
+			</Anchor>
+        </Anchors>
+        <Scripts>
+			<OnClick>SendChatMessage(".mod speed 50", "GUILD");</OnClick>
+        </Scripts>
+        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></NormalTexture>
+        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></PushedTexture>
+        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></DisabledTexture>
+        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD"><TexCoords left="0" right="0.625" top="0" bottom="0.6875" /></HighlightTexture>
+        <ButtonText name="$parentText">
+			<FontHeight><AbsValue val="10" /></FontHeight>
         </ButtonText>
         <NormalFont style="GameFontNormal" />
         <HighlightFont style="GameFontHighlight" />
@@ -411,7 +476,7 @@ SendChatMessage(".gm chat off", "GUILD");
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>QuestForm:Show(); GMThird:Hide();
+          <OnClick>QuestForm:Show();
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -596,7 +661,7 @@ SendChatMessage(".gm chat off", "GUILD");
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>NPCForm:Show(); GMThird:Hide();
+          <OnClick>NPCForm:Show();
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">

@@ -3,7 +3,7 @@
   <Frame name="NPCForm" hidden="true" parent="UIParent" movable="true" enableKeyboard="true" clampedToScreen="true">
     <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508883-59c2-4f83-ae10-27aaad48391b" />-->
     <Size>
-      <AbsDimension x="370" y="103" />
+      <AbsDimension x="370" y="123" />
     </Size>
     <Anchors>
       <Anchor point="RIGHT" relativeTo="UIParent">
@@ -76,7 +76,7 @@
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".npc add "..NPCID:GetText(), "GUILD");
+          <OnClick>SendChatMessage(".npc add "..NPCID:GetText(), "GUILD"); NPCID:ClearFocus(NPCID);
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -180,7 +180,7 @@
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".respawn", "GUILD");
+          <OnClick>SendChatMessage(".respawn", "GUILD"); NPCID:ClearFocus(NPCID);
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -217,7 +217,7 @@
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".npc move", "GUILD");
+          <OnClick>SendChatMessage(".npc move", "GUILD"); NPCID:ClearFocus(NPCID);
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -254,7 +254,7 @@
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".npc info", "GUILD");
+          <OnClick>SendChatMessage(".npc info", "GUILD"); NPCID:ClearFocus(NPCID);
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -278,6 +278,7 @@
         <HighlightFont style="GameFontHighlight" />
         <DisabledFont style="GameFontDisable" />
       </Button>
+	  
       <Button name="$parentComponent3" text="Удалить">
         <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
         <Size>
@@ -291,7 +292,7 @@
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".npc delete", "GUILD");
+          <OnClick>SendChatMessage(".npc delete", "GUILD"); NPCID:ClearFocus(NPCID);
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -315,6 +316,122 @@
         <HighlightFont style="GameFontHighlight" />
         <DisabledFont style="GameFontDisable" />
       </Button>
+	  
+	  
+	  <Button name="$parentComponentTP" text="ТП к NPC по id">
+        <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
+        <Size>
+          <AbsDimension x="112" y="17" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="12" y="-72" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>local t={}; for str in string.gmatch(NPCID:GetText(), "([^"..",".."]+)") do table.insert(t, str) end; for i=1,#t do C_Timer.After(6*(i-1), function() SendChatMessage(".go creature id "..t[i], "GUILD", nil, nil) end) end;  NPCID:ClearFocus(NPCID);</OnClick>
+        </Scripts>
+        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </NormalTexture>
+        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </PushedTexture>
+        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </DisabledTexture>
+        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </HighlightTexture>
+        <ButtonText name="$parentText">
+          <FontHeight>
+            <AbsValue val="10" />
+          </FontHeight>
+        </ButtonText>
+        <NormalFont style="GameFontNormal" />
+        <HighlightFont style="GameFontHighlight" />
+        <DisabledFont style="GameFontDisable" />
+      </Button>
+	  
+	  
+	  <Button name="$parentComponentTPguid" text="ТП к NPC по guid">
+        <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
+        <Size>
+          <AbsDimension x="112" y="17" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="129" y="-72" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>local t={}; for str in string.gmatch(NPCID:GetText(), "([^"..",".."]+)") do table.insert(t, str) end; for i=1,#t do C_Timer.After(6*(i-1), function() SendChatMessage(".go creature "..t[i], "GUILD", nil, nil) end) end; NPCID:ClearFocus(NPCID);</OnClick>
+        </Scripts>
+        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </NormalTexture>
+        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </PushedTexture>
+        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </DisabledTexture>
+        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </HighlightTexture>
+        <ButtonText name="$parentText">
+          <FontHeight>
+            <AbsValue val="10" />
+          </FontHeight>
+        </ButtonText>
+        <NormalFont style="GameFontNormal" />
+        <HighlightFont style="GameFontHighlight" />
+        <DisabledFont style="GameFontDisable" />
+      </Button>
+	  
+	  <Button name="$parentComponent3" text="Рядом">
+        <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
+        <Size>
+          <AbsDimension x="112" y="17" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="246" y="-72" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+			SendChatMessage(".npc near", "GUILD"); NPCID:ClearFocus(NPCID);
+		  </OnClick>
+        </Scripts>
+        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </NormalTexture>
+        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </PushedTexture>
+        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </DisabledTexture>
+        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </HighlightTexture>
+        <ButtonText name="$parentText">
+          <FontHeight>
+            <AbsValue val="10" />
+          </FontHeight>
+        </ButtonText>
+        <NormalFont style="GameFontNormal" />
+        <HighlightFont style="GameFontHighlight" />
+        <DisabledFont style="GameFontDisable" />
+      </Button>	
+	
       <Button name="Done" text="Назад">
         <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
         <Size>
@@ -323,7 +440,7 @@
         <Anchors>
           <Anchor point="TOPLEFT">
             <Offset>
-              <AbsDimension x="12" y="-72" />
+              <AbsDimension x="12" y="-95" />
             </Offset>
           </Anchor>
         </Anchors>

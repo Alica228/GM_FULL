@@ -71,7 +71,7 @@
         <Anchors>
           <Anchor point="TOPLEFT">
             <Offset>
-              <AbsDimension x="13" y="-30" />
+              <AbsDimension x="13" y="-161" />
             </Offset>
           </Anchor>
         </Anchors>
@@ -460,7 +460,7 @@
         <Anchors>
           <Anchor point="TOPLEFT">
             <Offset>
-              <AbsDimension x="13" y="-161" />
+              <AbsDimension x="13" y="-30" />
             </Offset>
           </Anchor>
         </Anchors>
@@ -678,12 +678,15 @@ OpenMain();
       </Button>
     </Frames>
     <Scripts>
-      <OnLoad>GMHelperOnLoad(self)
+      <OnLoad>GMHelperOnLoad(self);
 </OnLoad>
       <OnDragStart>self:StartMoving()
 </OnDragStart>
       <OnDragStop>self:StopMovingOrSizing()
 </OnDragStop>
+<OnShow>
+TicketName:SetText(UnitName("player"));
+</OnShow>
     </Scripts>
   </Frame>
 </Ui>

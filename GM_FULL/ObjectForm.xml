@@ -1227,10 +1227,12 @@ end
 				function(self, event, MSG, MSG2, Type, Sender)
 					local ID, ENTRYORGUID, ARG2, ARG3 = MSG2:match("^(.+)|([%a%d]+)|(.*)|([%a%d]+)$")
 					if (ID == "ADD") or (ID == "SELECTED") then
+						ENTRYORGUID = ENTRYORGUID
 						ObjectID:SetText("");
 						ObjectID:Insert(" "..ARG3);
 						ObjectGUID:SetText("");
 						ObjectGUID:Insert(" "..ENTRYORGUID);
+						print(ID, ENTRYORGUID, ARG2, ARG3);
 					end
 				end
 			)

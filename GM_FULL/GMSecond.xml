@@ -63,7 +63,7 @@
       </Layer>
     </Layers>
     <Frames>
-		<Button name="$parentComponent1" text="|cFF00FF00GM On|r">
+		<Button name="GMBtnSecondlvl" text="|cFF00FF00GM On|r">
         <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
         <Size>
           <AbsDimension x="60" y="17" />
@@ -76,8 +76,24 @@
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".gm on", "GUILD");
+          <OnLoad>
+if gmEnabled then
+GMBtnSecondlvl:SetText("|cFF00FF00GM Off|r");
+else
+GMBtnSecondlvl:SetText("|cFF00FF00GM On|r");
+end;
+          </OnLoad>
+          <OnClick>
+if gmEnabled then
+SendChatMessage(".gm off", "GUILD");
+SendChatMessage(".gm chat off", "GUILD");
+GMBtnSecondlvl:SetText("|cFF00FF00GM On|r");
+else
+SendChatMessage(".gm on", "GUILD");
 SendChatMessage(".gm chat on", "GUILD");
+GMBtnSecondlvl:SetText("|cFF00FF00GM Off|r");
+end;
+gmEnabled = not gmEnabled;
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -101,7 +117,7 @@ SendChatMessage(".gm chat on", "GUILD");
         <HighlightFont style="GameFontHighlight" />
         <DisabledFont style="GameFontDisable" />
       </Button>
-		<Button name="$parentComponent2" text="|cFF00FF00GM Off|r">
+		<Button name="GMVisBtnSecondlvl" text="|cFF00FF00Vis On|r">
         <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
         <Size>
           <AbsDimension x="60" y="17" />
@@ -114,8 +130,26 @@ SendChatMessage(".gm chat on", "GUILD");
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".gm off", "GUILD");
-SendChatMessage(".gm chat off", "GUILD");
+          <OnLoad>
+if UnitAura("player", "Прозрачность (50%)", nil, "PLAYER|HARMFUL") then
+	gmVisEnabled = true;
+	GMVisBtnSecondlvl:SetText("|cFF00FF00Vis Off|r");
+else
+	gmVisEnabled = false;
+	GMVisBtnSecondlvl:SetText("|cFF00FF00Vis On|r");
+end
+          </OnLoad>
+          <OnClick>
+if gmVisEnabled then
+SendChatMessage(".gm vis on", "GUILD");
+GMVisBtnSecondlvl:SetText("|cFF00FF00Vis On|r");
+else
+SendChatMessage(".gm vis off", "GUILD");
+GMVisBtnSecondlvl:SetText("|cFF00FF00Vis Off|r");
+gmEnabled = true;
+GMBtnSecondlvl:SetText("|cFF00FF00GM Off|r");
+end;
+gmVisEnabled = not gmVisEnabled;
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -139,7 +173,7 @@ SendChatMessage(".gm chat off", "GUILD");
         <HighlightFont style="GameFontHighlight" />
         <DisabledFont style="GameFontDisable" />
       </Button>
-		<Button name="$parentComponent3" text="|cFF00FF00Vis On|r">
+		<Button name="GMFlyBtnSecondlvl" text="|cFF00FF00Vis On|r">
         <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
         <Size>
           <AbsDimension x="60" y="17" />
@@ -152,7 +186,24 @@ SendChatMessage(".gm chat off", "GUILD");
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".gm visible on", "GUILD");
+          <OnLoad>
+if UnitAura("player", "Полет", nil, "PLAYER|HELPFUL") then
+	gmFlyEnabled = true;
+	GMFlyBtnSecondlvl:SetText("|cFF00FF00Fly Off|r");
+else
+	gmVisEnabled = false;
+	GMFlyBtnSecondlvl:SetText("|cFF00FF00Fly On|r");
+end
+          </OnLoad>
+          <OnClick>
+if gmFlyEnabled then
+SendChatMessage(".gm fly off", "GUILD");
+GMFlyBtnSecondlvl:SetText("|cFF00FF00Fly On|r");
+else
+SendChatMessage(".gm fly on", "GUILD");
+GMFlyBtnSecondlvl:SetText("|cFF00FF00Fly Off|r");
+end;
+gmFlyEnabled = not gmFlyEnabled;
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">

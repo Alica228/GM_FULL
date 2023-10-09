@@ -1,4 +1,5 @@
 ﻿
+
 StaticPopupDialogs["EXAMPLE_HELLOWORLD"] = {
   text = "Do you want to greet the world today?",
   button1 = "Yes",
@@ -12,9 +13,28 @@ StaticPopupDialogs["EXAMPLE_HELLOWORLD"] = {
   preferredIndex = 3
 }
 
+
+gmEnabled = false
+gmVisEnabled = false
 -- быстрое открытие меню по лвлу
 local function myChatFilter(self, event, msg, author, ...)
-	if     msg:find("Your account level is: 4") then
+	if msg:find("["..UnitName("player").."]'s Fly Mode on") then
+		gmFlyEnabled = true
+	elseif msg:find("["..UnitName("player").."]'s Fly Mode off") then
+		gmFlyEnabled = false
+	elseif msg:find("Your account level is: 10") then
+		view = 3
+	elseif msg:find("Your account level is: 9") then
+		view = 3
+	elseif msg:find("Your account level is: 8") then
+		view = 3
+	elseif msg:find("Your account level is: 7") then
+		view = 3
+	elseif msg:find("Your account level is: 6") then
+		view = 3
+	elseif msg:find("Your account level is: 5") then
+		view = 3
+	elseif msg:find("Your account level is: 4") then
 		view = 3
 	elseif msg:find("Your account level is: 3") then
 		view = 3
@@ -22,6 +42,12 @@ local function myChatFilter(self, event, msg, author, ...)
 		view = 2
 	elseif msg:find("Your account level is: 1") then
 		view = 1
+	elseif msg:find("Ticket entry") then
+		res, _ = msg:gsub("%D+", "")
+		SendChatMessage(".ticket viewid "..res, "GUILD", nil, nil);
+		if TicketForm:IsShown() then
+			TicketID:SetText(tonumber(res))
+		end
 	end
 end
 
@@ -122,3 +148,28 @@ local function testPlayerMenuButton(self)
 end
 
 hooksecurefunc("UnitPopup_OnClick",testPlayerMenuButton)
+
+
+GameTooltip:SetScript("OnEvent", function(self, event, errorType, message)
+	if 	   message:find("invisible") then
+		gmVisEnabled = true
+		gmEnabled = true
+		GMBtnSecondlvl:SetText("|cFF00FF00GM Off|r");
+		GMVisBtnSecondlvl:SetText("|cFF00FF00Vis Off|r");
+		GMBtnThirdlvl:SetText("|cFF00FF00GM Off|r");
+		GMVisBtnThirdlvl:SetText("|cFF00FF00Vis Off|r");
+	elseif message:find("visible") then
+		gmVisEnabled = false
+		GMVisBtnSecondlvl:SetText("|cFF00FF00Vis On|r");
+		GMVisBtnThirdlvl:SetText("|cFF00FF00Vis On|r");
+	elseif message:find("GM mode is ON") then
+		gmEnabled = true
+		GMBtnSecondlvl:SetText("|cFF00FF00GM Off|r");
+		GMBtnThirdlvl:SetText("|cFF00FF00GM Off|r");
+	elseif message:find("GM mode is OFF") then
+		gmEnabled = false
+		GMBtnSecondlvl:SetText("|cFF00FF00GM On|r");
+		GMBtnThirdlvl:SetText("|cFF00FF00GM On|r");
+	end
+end)
+GameTooltip:RegisterEvent("UI_ERROR_MESSAGE")

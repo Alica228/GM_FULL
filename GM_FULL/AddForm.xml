@@ -3,7 +3,7 @@
   <Frame name="AddForm" hidden="true" parent="UIParent" movable="true" enableKeyboard="true" clampedToScreen="true">
     <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508883-59c2-4f83-ae10-27aaad48391b" />-->
     <Size>
-      <AbsDimension x="282" y="279" />
+      <AbsDimension x="282" y="329" />
     </Size>
     <Anchors>
       <Anchor point="RIGHT" relativeTo="UIParent">
@@ -112,15 +112,9 @@
 </OnLoad>
           <OnHide>self:SetText("");
 </OnHide>
-          <OnEnter>GameTooltip:SetOwner(this, "ANCHOR_LEFT");
-GameTooltip:AddLine("|cFFD4A017Gold|r");
-GameTooltip:Show();
-</OnEnter>
-          <OnLeave>GameTooltip:Hide();
-</OnLeave>
           <OnEscapePressed>self:ClearFocus(self);
 </OnEscapePressed>
-          <OnTabPressed>self:ClearFocus(self); Silver:SetFocus();
+          <OnTabPressed>self:ClearFocus(self);
 </OnTabPressed>
         </Scripts>
         <FontString font="Fonts\ARIALN.TTF">
@@ -149,7 +143,7 @@ GameTooltip:Show();
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".modify money "..Add:GetNumber()*10000, "GUILD");
+          <OnClick>SendChatMessage(".modify money "..Add:GetNumber(), "GUILD"); Add:ClearFocus(); RepNumber:ClearFocus(); RepCount:ClearFocus(); CurrNumber:ClearFocus(); CurrCount:ClearFocus(); ItemNumber:ClearFocus(); ItemQuantity:ClearFocus(); ItemBonus:ClearFocus();
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -186,7 +180,7 @@ GameTooltip:Show();
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".learn "..Add:GetText(), "GUILD");
+          <OnClick>SendChatMessage(".learn "..Add:GetText(), "GUILD"); Add:ClearFocus(); RepNumber:ClearFocus(); RepCount:ClearFocus(); CurrNumber:ClearFocus(); CurrCount:ClearFocus(); ItemNumber:ClearFocus(); ItemQuantity:ClearFocus(); ItemBonus:ClearFocus();
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -223,7 +217,7 @@ GameTooltip:Show();
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".additemset "..Add:GetText(), "GUILD");
+          <OnClick>SendChatMessage(".additemset "..Add:GetText(), "GUILD"); Add:ClearFocus(); RepNumber:ClearFocus(); RepCount:ClearFocus(); CurrNumber:ClearFocus(); CurrCount:ClearFocus(); ItemNumber:ClearFocus(); ItemQuantity:ClearFocus(); ItemBonus:ClearFocus();
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -260,7 +254,7 @@ GameTooltip:Show();
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".quest add "..Add:GetText(), "GUILD");
+          <OnClick>SendChatMessage(".quest add "..Add:GetText(), "GUILD"); Add:ClearFocus(); RepNumber:ClearFocus(); RepCount:ClearFocus(); CurrNumber:ClearFocus(); CurrCount:ClearFocus(); ItemNumber:ClearFocus(); ItemQuantity:ClearFocus(); ItemBonus:ClearFocus();
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -369,7 +363,6 @@ GameTooltip:Show();
           <OnEscapePressed>self:ClearFocus(self);
 </OnEscapePressed>
           <OnTabPressed>self:ClearFocus(self);
-ItemStack1:SetFocus();
 </OnTabPressed>
         </Scripts>
         <FontString font="Fonts\ARIALN.TTF">
@@ -470,7 +463,6 @@ ItemStack1:SetFocus();
           <OnEscapePressed>self:ClearFocus(self);
 </OnEscapePressed>
           <OnTabPressed>self:ClearFocus(self);
-ItemStack1:SetFocus();
 </OnTabPressed>
         </Scripts>
         <FontString font="Fonts\ARIALN.TTF">
@@ -499,7 +491,248 @@ ItemStack1:SetFocus();
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".modify rep "..RepNumber:GetText().." "..RepCount:GetText(), "GUILD");
+          <OnClick>SendChatMessage(".modify rep "..RepNumber:GetText().." "..RepCount:GetText(), "GUILD"); Add:ClearFocus(); RepNumber:ClearFocus(); RepCount:ClearFocus(); CurrNumber:ClearFocus(); CurrCount:ClearFocus(); ItemNumber:ClearFocus(); ItemQuantity:ClearFocus(); ItemBonus:ClearFocus();
+</OnClick>
+        </Scripts>
+        <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </NormalTexture>
+        <PushedTexture file="Interface\Buttons\UI-Panel-Button-Down">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </PushedTexture>
+        <DisabledTexture file="Interface\Buttons\UI-Panel-Button-Disabled">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </DisabledTexture>
+        <HighlightTexture file="Interface\Buttons\UI-Panel-Button-Highlight" alphaMode="ADD">
+          <TexCoords left="0" right="0.625" top="0" bottom="0.6875" />
+        </HighlightTexture>
+        <ButtonText name="$parentText">
+          <FontHeight>
+            <AbsValue val="10" />
+          </FontHeight>
+        </ButtonText>
+        <NormalFont style="GameFontNormal" />
+        <HighlightFont style="GameFontHighlight" />
+        <DisabledFont style="GameFontDisable" />
+      </Button>
+ 
+ 
+       <Frame name="$parentComponent2">
+        <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508885-59c2-4f83-ae10-27aaad48391b" />-->
+        <Size>
+          <AbsDimension x="126" y="17" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="12" y="-164" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer>
+            <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Currency ID">
+              <Anchors>
+                <Anchor point="TOPLEFT" />
+                <Anchor point="BOTTOMRIGHT" />
+              </Anchors>
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="0.8196079" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </FontString>
+          </Layer>
+        </Layers>
+      </Frame>
+      <EditBox name="CurrNumber" enableMouse="true">
+        <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+        <Size>
+          <AbsDimension x="126" y="17" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="12" y="-187" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+              <Size>
+                <AbsDimension x="8" y="20" />
+              </Size>
+              <Anchors>
+                <Anchor point="LEFT" />
+              </Anchors>
+              <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+            </Texture>
+            <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+              <Size>
+                <AbsDimension x="8" y="20" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT" />
+              </Anchors>
+              <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+            </Texture>
+            <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+              <Size>
+                <AbsDimension x="10" y="20" />
+              </Size>
+              <Anchors>
+                <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+              </Anchors>
+              <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+            </Texture>
+          </Layer>
+        </Layers>
+        <Scripts>
+          <OnLoad>self:SetAutoFocus(false);
+</OnLoad>
+          <OnHide>self:SetText("");
+</OnHide>
+          <OnEscapePressed>self:ClearFocus(self);
+</OnEscapePressed>
+          <OnTabPressed>self:ClearFocus(self);
+</OnTabPressed>
+        </Scripts>
+        <FontString font="Fonts\ARIALN.TTF">
+          <FontHeight>
+            <AbsValue val="14" />
+          </FontHeight>
+          <Color r="1" g="1" b="1" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </FontString>
+      </EditBox>
+            <Frame name="$parentComponent2">
+        <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508885-59c2-4f83-ae10-27aaad48391b" />-->
+        <Size>
+          <AbsDimension x="126" y="17" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="144" y="-164" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer>
+            <FontString name="$parentLabel" font="Fonts\FRIZQT__.TTF" text="Count">
+              <Anchors>
+                <Anchor point="TOPLEFT" />
+                <Anchor point="BOTTOMRIGHT" />
+              </Anchors>
+              <FontHeight>
+                <AbsValue val="12" />
+              </FontHeight>
+              <Color r="1" g="0.8196079" b="0" />
+              <Shadow>
+                <Color r="0" g="0" b="0" />
+                <Offset>
+                  <AbsDimension x="1" y="-1" />
+                </Offset>
+              </Shadow>
+            </FontString>
+          </Layer>
+        </Layers>
+      </Frame>
+	  <EditBox name="CurrCount" enableMouse="true">
+        <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508887-59c2-4f83-ae10-27aaad48391b" />-->
+        <Size>
+          <AbsDimension x="126" y="17" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="144" y="-187" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Layers>
+          <Layer level="BACKGROUND">
+            <Texture name="$parentLeft" file="Interface\Common\Common-Input-Border">
+              <Size>
+                <AbsDimension x="8" y="20" />
+              </Size>
+              <Anchors>
+                <Anchor point="LEFT" />
+              </Anchors>
+              <TexCoords left="0" right="0.0625" top="0" bottom="0.625" />
+            </Texture>
+            <Texture name="$parentRight" file="Interface\Common\Common-Input-Border">
+              <Size>
+                <AbsDimension x="8" y="20" />
+              </Size>
+              <Anchors>
+                <Anchor point="RIGHT" />
+              </Anchors>
+              <TexCoords left="0.9375" right="1" top="0" bottom="0.625" />
+            </Texture>
+            <Texture name="$parentMiddle" file="Interface\Common\Common-Input-Border">
+              <Size>
+                <AbsDimension x="10" y="20" />
+              </Size>
+              <Anchors>
+                <Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT" />
+                <Anchor point="RIGHT" relativeTo="$parentRight" relativePoint="LEFT" />
+              </Anchors>
+              <TexCoords left="0.0625" right="0.9375" top="0" bottom="0.625" />
+            </Texture>
+          </Layer>
+        </Layers>
+        <Scripts>
+          <OnLoad>self:SetAutoFocus(false);
+</OnLoad>
+          <OnHide>self:SetText("");
+</OnHide>
+          <OnEscapePressed>self:ClearFocus(self);
+</OnEscapePressed>
+          <OnTabPressed>self:ClearFocus(self);
+</OnTabPressed>
+        </Scripts>
+        <FontString font="Fonts\ARIALN.TTF">
+          <FontHeight>
+            <AbsValue val="14" />
+          </FontHeight>
+          <Color r="1" g="1" b="1" />
+          <Shadow>
+            <Color r="0" g="0" b="0" />
+            <Offset>
+              <AbsDimension x="1" y="-1" />
+            </Offset>
+          </Shadow>
+        </FontString>
+      </EditBox> 
+  <Button name="$modcurr" text="Выдать валюту">
+        <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508884-59c2-4f83-ae10-27aaad48391b" />-->
+        <Size>
+          <AbsDimension x="258" y="17" />
+        </Size>
+        <Anchors>
+          <Anchor point="TOPLEFT">
+            <Offset>
+              <AbsDimension x="12" y="-210" />
+            </Offset>
+          </Anchor>
+        </Anchors>
+        <Scripts>
+          <OnClick>
+		  local t={}; for str in string.gmatch(CurrNumber:GetText(), "([^"..",".."]+)") do table.insert(t, str) end; for i=1,#t do SendChatMessage(".quest add "..t[i], "GUILD"); SendChatMessage(".mod curr "..t[i].." "..CurrCount:GetText(), "GUILD"); end;
+		  Add:ClearFocus(); RepNumber:ClearFocus(); RepCount:ClearFocus(); CurrNumber:ClearFocus(); CurrCount:ClearFocus(); ItemNumber:ClearFocus(); ItemQuantity:ClearFocus(); ItemBonus:ClearFocus();
 RepNumber:ClearFocus();
 RepCount:ClearFocus();
 </OnClick>
@@ -525,7 +758,9 @@ RepCount:ClearFocus();
         <HighlightFont style="GameFontHighlight" />
         <DisabledFont style="GameFontDisable" />
       </Button>
-      <Frame name="$parentComponent2">
+
+
+	 <Frame name="$parentComponent2">
         <!--<FrameSkin skinid="dcb143e1-a4ab-4e7c-b934-1efa40101d21" frameid="2d508885-59c2-4f83-ae10-27aaad48391b" />-->
         <Size>
           <AbsDimension x="82" y="17" />
@@ -533,7 +768,7 @@ RepCount:ClearFocus();
         <Anchors>
           <Anchor point="TOPLEFT">
             <Offset>
-              <AbsDimension x="12" y="-174" />
+              <AbsDimension x="12" y="-224" />
             </Offset>
           </Anchor>
         </Anchors>
@@ -566,7 +801,7 @@ RepCount:ClearFocus();
         <Anchors>
           <Anchor point="TOPLEFT">
             <Offset>
-              <AbsDimension x="12" y="-197" />
+              <AbsDimension x="12" y="-247" />
             </Offset>
           </Anchor>
         </Anchors>
@@ -610,7 +845,6 @@ RepCount:ClearFocus();
           <OnEscapePressed>self:ClearFocus(self);
 </OnEscapePressed>
           <OnTabPressed>self:ClearFocus(self);
-ItemQuantity1:SetFocus();
 </OnTabPressed>
         </Scripts>
         <FontString font="Fonts\ARIALN.TTF">
@@ -634,7 +868,7 @@ ItemQuantity1:SetFocus();
         <Anchors>
           <Anchor point="TOPLEFT">
             <Offset>
-              <AbsDimension x="100" y="-174" />
+              <AbsDimension x="100" y="-224" />
             </Offset>
           </Anchor>
         </Anchors>
@@ -667,7 +901,7 @@ ItemQuantity1:SetFocus();
         <Anchors>
           <Anchor point="TOPLEFT">
             <Offset>
-              <AbsDimension x="100" y="-197" />
+              <AbsDimension x="100" y="-247" />
             </Offset>
           </Anchor>
         </Anchors>
@@ -734,7 +968,7 @@ ItemQuantity1:SetFocus();
         <Anchors>
           <Anchor point="TOPLEFT">
             <Offset>
-              <AbsDimension x="188" y="-174" />
+              <AbsDimension x="188" y="-224" />
             </Offset>
           </Anchor>
         </Anchors>
@@ -767,7 +1001,7 @@ ItemQuantity1:SetFocus();
         <Anchors>
           <Anchor point="TOPLEFT">
             <Offset>
-              <AbsDimension x="188" y="-197" />
+              <AbsDimension x="188" y="-247" />
             </Offset>
           </Anchor>
         </Anchors>
@@ -811,7 +1045,6 @@ ItemQuantity1:SetFocus();
           <OnEscapePressed>self:ClearFocus(self);
 </OnEscapePressed>
           <OnTabPressed>self:ClearFocus(self);
-ItemStack1:SetFocus();
 </OnTabPressed>
         </Scripts>
         <FontString font="Fonts\ARIALN.TTF">
@@ -835,15 +1068,14 @@ ItemStack1:SetFocus();
         <Anchors>
           <Anchor point="TOPLEFT">
             <Offset>
-              <AbsDimension x="12" y="-220" />
+              <AbsDimension x="12" y="-270" />
             </Offset>
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>SendChatMessage(".additem "..ItemNumber:GetText().." "..ItemQuantity:GetText().." "..ItemBonus:GetText(), "GUILD");
-ItemNumber:ClearFocus();
-ItemQuantity:ClearFocus();
-ItemBonus:ClearFocus();
+          <OnClick>
+		  local t={}; for str in string.gmatch(ItemNumber:GetText(), "([^"..",".."]+)") do table.insert(t, str) end; for i=1,#t do SendChatMessage(".additem "..t[i].." "..ItemQuantity:GetText().." "..ItemBonus:GetText(), "GUILD");  end;
+		  Add:ClearFocus(); RepNumber:ClearFocus(); RepCount:ClearFocus(); CurrNumber:ClearFocus(); CurrCount:ClearFocus(); ItemNumber:ClearFocus(); ItemQuantity:ClearFocus(); ItemBonus:ClearFocus();
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -875,7 +1107,7 @@ ItemBonus:ClearFocus();
         <Anchors>
           <Anchor point="TOPLEFT">
             <Offset>
-              <AbsDimension x="12" y="-248" />
+              <AbsDimension x="12" y="-298" />
             </Offset>
           </Anchor>
         </Anchors>
