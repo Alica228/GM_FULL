@@ -76,7 +76,7 @@
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>GMFirst:Show(); FullForm:Hide(); view = 1;
+          <OnClick>GMFirst:Show(); FullForm:Hide(); gmLevel = 1;
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -113,7 +113,7 @@
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>GMSecond:Show(); FullForm:Hide(); view = 2;
+          <OnClick>GMSecond:Show(); FullForm:Hide(); gmLevel = 2;
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">
@@ -150,7 +150,7 @@
           </Anchor>
         </Anchors>
         <Scripts>
-          <OnClick>GMThird:Show(); FullForm:Hide(); view = 3;
+          <OnClick>GMThird:Show(); FullForm:Hide(); gmLevel = 3;
 </OnClick>
         </Scripts>
         <NormalTexture file="Interface\Buttons\UI-Panel-Button-Up">

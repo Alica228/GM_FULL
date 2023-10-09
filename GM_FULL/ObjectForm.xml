@@ -272,14 +272,9 @@ end
           </Layer>
         </Layers>
         <Scripts>
-          <OnLoad>self:SetAutoFocus(false);
-</OnLoad>
-          <OnHide>self:SetText("");
-</OnHide>
-          <OnEscapePressed>self:ClearFocus(self);
-</OnEscapePressed>
-          <OnTabPressed>self:ClearFocus(self); ZoneName:SetFocus();
-</OnTabPressed>
+          <OnLoad>self:SetAutoFocus(false);</OnLoad>
+          <OnHide>self:SetText("");</OnHide>
+          <OnEscapePressed>self:ClearFocus(self);</OnEscapePressed>
         </Scripts>
         <FontString font="Fonts\ARIALN.TTF">
           <FontHeight>
@@ -537,14 +532,9 @@ end
           </Layer>
         </Layers>
         <Scripts>
-          <OnLoad>self:SetAutoFocus(false);
-</OnLoad>
-          <OnHide>self:SetText("");
-</OnHide>
-          <OnEscapePressed>self:ClearFocus(self);
-</OnEscapePressed>
-          <OnTabPressed>self:ClearFocus(self); ZoneName:SetFocus();
-</OnTabPressed>
+          <OnLoad>self:SetAutoFocus(false);</OnLoad>
+          <OnHide>self:SetText("");</OnHide>
+          <OnEscapePressed>self:ClearFocus(self);</OnEscapePressed>
         </Scripts>
         <FontString font="Fonts\ARIALN.TTF">
           <FontHeight>
@@ -891,14 +881,9 @@ end
           </Layer>
         </Layers>
         <Scripts>
-          <OnLoad>self:SetAutoFocus(false);
-</OnLoad>
-          <OnHide>self:SetText("");
-</OnHide>
-          <OnEscapePressed>self:ClearFocus(self);
-</OnEscapePressed>
-          <OnTabPressed>self:ClearFocus(self); ZoneName:SetFocus();
-</OnTabPressed>
+          <OnLoad>self:SetAutoFocus(false);</OnLoad>
+          <OnHide>self:SetText("");</OnHide>
+          <OnEscapePressed>self:ClearFocus(self);</OnEscapePressed>
         </Scripts>
         <FontString font="Fonts\ARIALN.TTF">
           <FontHeight>
@@ -1116,14 +1101,9 @@ end
           </Layer>
         </Layers>
         <Scripts>
-          <OnLoad>self:SetAutoFocus(false);
-</OnLoad>
-          <OnHide>self:SetText("");
-</OnHide>
-          <OnEscapePressed>self:ClearFocus(self);
-</OnEscapePressed>
-          <OnTabPressed>self:ClearFocus(self); ZoneName:SetFocus();
-</OnTabPressed>
+          <OnLoad>self:SetAutoFocus(false);</OnLoad>
+          <OnHide>self:SetText("");</OnHide>
+          <OnEscapePressed>self:ClearFocus(self);</OnEscapePressed>
         </Scripts>
         <FontString font="Fonts\ARIALN.TTF">
           <FontHeight>
